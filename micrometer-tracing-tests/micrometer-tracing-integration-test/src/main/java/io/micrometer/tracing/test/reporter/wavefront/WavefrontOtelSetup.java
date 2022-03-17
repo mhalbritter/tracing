@@ -320,7 +320,7 @@ public final class WavefrontOtelSetup implements AutoCloseable {
         }
 
         private WavefrontSpanHandler wavefrontSpanHandler(MeterRegistry meterRegistry) {
-            return new WavefrontSpanHandler(50000, new WavefrontClient.Builder(this.server, this.token).build(), meterRegistry, this.source, new ApplicationTags.Builder(this.applicationName, this.serviceName).build(), new HashSet<>());
+            return new WavefrontSpanHandler(50000, new WavefrontClient.Builder(this.server, this.token).build(), new MeterRegistrySpanMetrics(meterRegistry), this.source, new ApplicationTags.Builder(this.applicationName, this.serviceName).build(), new HashSet<>());
         }
 
         private static WavefrontOtelSpanHandler wavefrontOtelSpanHandler(WavefrontSpanHandler handler) {
